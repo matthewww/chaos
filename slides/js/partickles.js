@@ -1,150 +1,125 @@
-var options = {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    density: 10,
-    densityText: 3,
-    minDist: 20,
-},
-    stage,
-    renderer;
+const _options = {
+        width: 400,
+        height: 135,
+        density: 9,
+        densityText: 5,
+        minDist: 8,
+    },
+    _particles = [];
 
-//math2 utils
-var Math2 = {}; Math2.random = function (t, n) { return Math.random() * (n - t) + t }, Math2.map = function (t, n, r, a, o) { return (o - a) * ((t - n) / (r - n)) + a }, Math2.randomPlusMinus = function (t) { return t = t ? t : .5, Math.random() > t ? -1 : 1 }, Math2.randomInt = function (t, n) { return n += 1, Math.floor(Math.random() * (n - t) + t) }, Math2.randomBool = function (t) { return t = t ? t : .5, Math.random() < t ? !0 : !1 }, Math2.degToRad = function (t) { return rad = t * Math.PI / 180, rad }, Math2.radToDeg = function (t) { return deg = 180 / (Math.PI * t), deg }, Math2.rgbToHex = function (t) { function n(t) { return ("0" + parseInt(t).toString(16)).slice(-2) } t = t.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/); var r = n(t[1]) + n(t[2]) + n(t[3]); return r.toUpperCase() }, Math2.distance = function (t, n, r, a) { return Math.sqrt((r - t) * (r - t) + (a - n) * (a - n)) };
+let _stage, _renderer;
 
+function addText() {
+    const canvas = document.createElement("canvas"),
+        context = canvas.getContext("2d");
 
-//mouse
-var mousePos = {
-    x: 0,
-    y: 0
-};
-
-window.onmousemove = function (e) {
-
-    e = e || window.event;
-
-    var pageX = e.pageX;
-    var pageY = e.pageY;
-    if (pageX === undefined) {
-        pageX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        pageY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-    }
-    mousePos = {
-        x: pageX,
-        y: pageY,
-    };
-}
-
-
-var imageData = false;
-var particles = [];
-
-function init() {
-    positionText();
-}
-
-function positionText() {
-    var canvas = document.createElement("canvas");
     canvas.width = 400;
-    canvas.height = 300
-    var context = canvas.getContext("2d");
+    canvas.height = 300;
     context.fillStyle = "#000000";
-    context.font = "90px 'Arial', sans-serif";
-    context.fillText("particles", 0, 80);
+    context.font = "110px 'Open Sans', sans-serif";
+    context.fillText("fractal", 0, 80);
+    addTextParticlesToStage(context);
+}
 
-    var imageData = context.getImageData(0, 0, 400, 400);
+function addTextParticlesToStage(context) {
+    const imageData = context.getImageData(0, 0, 400, 400);
     data = imageData.data;
 
     // Iterate each row and column
-    for (var i = 0; i < imageData.height; i += options.densityText) {
-        for (var j = 0; j < imageData.width; j += options.densityText) {
+    for (let i = 0; i < imageData.height; i += _options.densityText) {
+        for (let j = 0; j < imageData.width; j += _options.densityText) {
 
             // Get the color of the pixel
-            var color = data[((j * (imageData.width * 4)) + (i * 4)) - 1];
+            const color = data[((j * (imageData.width * 4)) + (i * 4)) - 1];
 
             // If the color is black, draw pixels
-            if (color == 255) {
-                var newPar = particle(true)
+            if (color === 255) {
+                const newPar = particle(true);
                 newPar.setPosition(i, j);
-                particles.push(newPar);
-                stage.addChild(newPar)
+                _particles.push(newPar);
+                _stage.addChild(newPar)
             }
         }
     }
 }
 
 function particle(text) {
+    const particle = new PIXI.Graphics();
+    if (text === true) particle.text = true;
 
-    $this = new PIXI.Graphics()
+    particle.beginFill(0Xffffff);
 
-    if (text == true) {
-        $this.text = true;
-    }
+    let radius;
+    particle.radius = radius = particle.text ? Math.random() * 3.5 : Math.random() * 10.5;
 
-    $this.beginFill(0Xff0000);
+    particle.drawCircle(0, 0, radius);
 
-    var radius;
-    $this.radius = radius = $this.text ? Math.random() * 3.5 : Math.random() * 10.5;
+    particle.size = this.radius;
+    particle.x = -this.width;
+    particle.y = -this.height;
+    particle.free = false;
 
-    $this.drawCircle(0, 0, radius);
+    particle.timer = randomInt(0, 100);
+    particle.v = randomPlusMinus() * random(.5, 1);
+    particle.hovered = false;
 
-    $this.size = this.radius;
-    $this.x = -this.width;
-    $this.y = -this.height;
-    $this.free = false;
+    particle.alpha = randomInt(10, 100) / 100;
 
-    $this.timer = Math2.randomInt(0, 100);
-    $this.v = Math2.randomPlusMinus() * Math2.random(.5, 1);
-    $this.hovered = false
+    particle.vy = -5 + parseInt(Math.random() * 10) / 2;
+    particle.vx = -4 + parseInt(Math.random() * 8);
 
-    $this.alpha = Math2.randomInt(10, 100) / 100;
-
-    $this.vy = -5 + parseInt(Math.random() * 10) / 2;
-    $this.vx = -4 + parseInt(Math.random() * 8);
-
-    $this.setPosition = function (x, y) {
-        if ($this.text) {
-            $this.x = x + (options.width / 2 - 180);
-            $this.y = y;
+    particle.setPosition = function (x, y) {
+        if (particle.text) {
+            particle.x = x + (_options.width / 2 - 165);
+            particle.y = y + 10;
         }
     };
-
-    return $this;
-
+    return particle;
 }
 
+function updateParticles() {
+    for (i = 0; i < _particles.length; i++) {
+        const p = _particles[i];
+
+        p.x = p.x + .2 * Math.sin(p.timer * .15);
+        p.y = p.y + .2 * Math.cos(p.timer * .15);
+        p.timer = p.timer + p.v;
+    }
+}
 
 function update() {
-
-    renderer.render(stage);
-
-
-    for (i = 0; i < particles.length; i++) {
-        var p = particles[i];
-
-        if (mousePos.x > p.x && mousePos.x < p.x + p.size && mousePos.y > p.y && mousePos.y < p.y + p.size) {
-            p.hovered = true;
-        }
-
-        p.scale.x = p.scale.y = scale = Math.max(Math.min(2.5 - (Math2.distance(p.x, p.y, mousePos.x, mousePos.y) / 160), 160), 1);
-
-
-        p.x = p.x + .2 * Math.sin(p.timer * .15)
-        p.y = p.y + .2 * Math.cos(p.timer * .15)
-        p.timer = p.timer + p.v;
-
-    }
+    _renderer.render(_stage);
+    updateParticles();
     window.requestAnimationFrame(update);
 }
 
-window.onload = function () {
-
-    var canvas = document.getElementById('canvasOne');
-
-    renderer = new PIXI.autoDetectRenderer(options.width, options.height, canvas);
-    stage = new PIXI.Stage("0X000000");
-    document.body.appendChild(renderer.view);
-    renderer.view.id = "notFound";
-
-    init();
+document.addEventListener('DOMContentLoaded', function () {
+    initRenderer();
+    addText();
     update()
+});
+
+function initRenderer() {
+    const canvas = document.getElementById('canvasOne');
+    _renderer = new PIXI.autoDetectRenderer(_options.width, _options.height, {view: canvas,  transparent: true});
+    _stage = new PIXI.Stage("0Xffffff");
+    document.getElementById('c1').appendChild(_renderer.view);
+}
+
+function random(t, n) {
+    return Math.random() * (n - t) + t;
+}
+
+function randomPlusMinus(t) {
+    t = t ? t : .5;
+    return Math.random() > t ? -1 : 1;
+}
+
+function randomInt(t, n) {
+    n += 1;
+    return Math.floor(Math.random() * (n - t) + t);
+}
+
+function distance(t, n, r, a) {
+    return Math.sqrt((r - t) * (r - t) + (a - n) * (a - n));
 }
