@@ -49,10 +49,9 @@ function particle(text) {
 
     particle.beginFill(0Xffffff);
 
-    let radius;
-    particle.radius = radius = particle.text ? Math.random() * 3.5 : Math.random() * 10.5;
+    particle.radius = particle.text ? Math.random() * 3.5 : Math.random() * 10.5;
 
-    particle.drawCircle(0, 0, radius);
+    particle.drawCircle(0, 0,  particle.radius);
 
     particle.size = this.radius;
     particle.x = -this.width;
@@ -61,7 +60,6 @@ function particle(text) {
 
     particle.timer = randomInt(0, 100);
     particle.v = randomPlusMinus() * random(.5, 1);
-    particle.hovered = false;
 
     particle.alpha = randomInt(10, 100) / 100;
 
