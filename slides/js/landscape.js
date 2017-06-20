@@ -10,6 +10,7 @@ Terrain.prototype.get = function (x, y) {
 };
 
 Terrain.prototype.set = function (x, y, val) {
+    console.log('-----------> ' + x);
     const position = x + this.size * y;
     this.map[position] = val;
 
@@ -38,53 +39,55 @@ Terrain.prototype.generate = function (roughness) {
         let x, y;
 
         if (half < 1) return;
+
         for (y = half; y < self.max; y += size) {
             for (x = half; x < self.max; x += size) {
-                square(x, y, half, Math.random() * scale * 2 - scale);
+                const offset = Math.random() * scale * 2 - scale,
+                    average = getSquareAverage(x, y, half);
+                console.log(average);
+                self.set(x, y, average + offset);
             }
         }
+
         for (y = 0; y <= self.max; y += half) {
             for (x = (y + half) % size; x <= self.max; x += size) {
-                diamond(x, y, half, Math.random() * scale * 2 - scale);
+                const offset = Math.random() * scale * 2 - scale,
+                    average = getDiamondAverage(x, y, half);
+                self.set(x, y, average + offset);
             }
         }
+
         divide(size / 2);
     }
 
-    function average(values) {
-        const valid = values.filter(function (val) {
-            return val !== -1;
-        });
-
-        const total = valid.reduce(function (sum, val) {
-            return sum + val;
-        }, 0);
-
-        return total / valid.length;
-    }
-
-    function square(x, y, size, offset) {
-        const ave = average([
+    function getSquareAverage(x, y, size) {
+        const average = getAverage([
             self.get(x - size, y - size),   // upper left
             self.get(x + size, y - size),   // upper right
             self.get(x + size, y + size),   // lower right
             self.get(x - size, y + size)    // lower left
         ]);
-
-        self.set(x, y, ave + offset);
+        return average;
     }
 
-    function diamond(x, y, size, offset) {
-        const ave = average([
+    function getDiamondAverage(x, y, size) {
+        const average = getAverage([
             self.get(x, y - size),      // top
             self.get(x + size, y),      // right
             self.get(x, y + size),      // bottom
             self.get(x - size, y)       // left
         ]);
+        return average;
+    }
 
-        self.set(x, y, ave + offset);
+    function getAverage(values) {
+        const valid = values.filter((val) => val !== -1),
+            total = valid.reduce((sum, val) => sum + val, 0);
+
+        return total / valid.length;
     }
 };
+
 Terrain.prototype.draw = function (ctx, width, height) {
     const self = this,
         waterVal = this.size * 0.1;
@@ -141,6 +144,6 @@ const display = document.getElementById('contextTwo'),
     width = display.width = window.innerWidth,
     height = display.height = window.innerHeight;
 
-const terrain = new Terrain(1);
+const terrain = new Terrain(3);
 terrain.generate(0.7);
 terrain.draw(ctx, width, height);
