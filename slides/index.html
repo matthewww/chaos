@@ -43,7 +43,7 @@
         </section>
         <section data-background-image="http://users.math.yale.edu/mandelbrot/BBM-2000-hires.jpg">
             <h2 class="fragment fade-up">
-                <mark>What a chuffing badass</mark>
+                <mark>What a chuffing badass.</mark>
             </h2>
         </section>
         <section data-background-image="http://www.socwall.com/images/wallpapers/4050-3072x2304.jpg">
@@ -63,24 +63,6 @@
                 <mark>“While classical geometry uses formulas to define a shape, fractal geometry uses iteration.”
                 </mark>
             </p>
-
-            <aside class="notes">
-                Non-integer dimension.
-                Classical geometry deals with objects of integer dimensions:
-                zero dimensional points,
-                one dimensional lines and curves,
-                two dimensional plane figures such as squares and circles,
-                and three dimensional solids such as cubes and spheres.
-
-                However, many natural phenomena are better described using a dimension between two whole numbers.
-                So while a straight line has a dimension of one, a fractal curve will have a dimension between one and
-                two, depending on how much space it takes up as it twists and curves.
-                The more the flat fractal fills a plane, the closer it approaches two dimensions.
-
-                Likewise, a "hilly fractal scene" will reach a dimension somewhere between two and three.
-                So a landscape made up of a large hill covered with tiny mounds would be close to the second dimension,
-                while a rough surface composed of many medium-sized hills would be close to the third dimension.
-            </aside>
         </section>
         <section data-background-image="image/noc.png">
             <h2>
@@ -113,25 +95,11 @@
             <h2>Types of Fractals</h2>
             <p>1. Complex number fractals</p>
             <p>2. Iterated function systems</p>
-
         </section>
         <section>
             <h2>Complex Number Fractals</h2>
-            <!--<div id="mandelbrot"></div>-->
             <img src="https://batchloaf.files.wordpress.com/2013/02/julia1.gif" style="border: none"/>
             <p style="font-size: medium"><b>Julia Sets - z = z<sup style="font-size: smaller">2</sup> + c</b></p>
-            <aside class="notes">
-                Gaston Julia.
-                Iteration of polynomials and rational functions.
-                Around the 1920s, after publishing his paper on the iteration of a rational function, Julia became
-                famous.
-                However, after his death, he was forgotten. He never saw visuals of his work.
-
-                Benoit B Mandelbrot.
-                Inspired by Julia’s work, and with the aid of computer graphics,
-                IBM employee Mandelbrot was able to show the first pictures of the most beautiful fractals known today.
-
-            </aside>
         </section>
         <section>
             <iframe width="854" height="480" src="https://www.youtube.com/embed/R1gpm7WsNhg" frameborder="0"
@@ -140,27 +108,9 @@
 
         <section>
             <h2>Complex Number Fractals</h2>
-            <!--<div id="mandelbrot"></div>-->
             <img src="http://a2wd.com/wp-content/uploads/2014/08/optimised.gif" style="border: none"/>
             <p style="font-size: medium"><b>Mandelbrot Set:</b>The Mandelbrot set can be considered a map of all Julia
                 sets because it uses a different <b>c</b> at each location.</p>
-            <aside class="notes">
-                Take a complex number - that is, an imaginary number plus a real number.
-                'a "point" on the complex plane'
-                If the complex number is Z = a+bi,
-                the coordinates of the point are
-                a (horizontal : real axis) and
-                b (vertical : imaginary axis)
-
-                i = sqrt -1
-
-                a Mandelbrot set marks the set of points
-                in the complex plane such that the corresponding
-                Julia set is connected and not computable.
-
-                "The" Mandelbrot set is the set obtained
-                from the quadratic recurrence equation
-            </aside>
         </section>
         <section data-background-image="image/Julia_Mandelbrot_Relationship.jpg">
             <h2>
@@ -169,15 +119,12 @@
             <img class="fragment fade-up" src="image/complex.png" style="border: none"/>
         </section>
         <section>
-            <h3>Iterated Function Systems</h3>
+            <h2>Iterated Function Systems</h2>
             <p>Iteration of one or more <b>affine transformations</b></p>
-            <p>Rotation, Scale, Translation, Stretch, Skew</p>
+            <p>Scale ⇒ Reflect ⇒ Rotate ⟹ Translate</p>
+            <p>Deterministic or Random application</p>
         </section>
-        <section>
-            <h3>Iterated Function Systems</h3>
-            <p>Iteration of one or more <b>affine transformations</b></p>
-            <p>Rotation, Scale, Translation</p>
-        </section>
+
         <section>
             <p class="fragment fade-up"><b>Cantor Set (1884)</b></p>
             <ol>
@@ -189,14 +136,6 @@
             </br></br>
             <img class="fragment fade-up plain"
                  src="http://mathworld.wolfram.com/images/eps-gif/CantorDustFractal_700.gif"/>
-        </section>
-        <section>
-            <iframe height='550' scrolling='no' title='simple recursion'
-                    src='//codepen.io/matt_w/embed/MomorM/?height=426&theme-id=0&default-tab=result&embed-version=2'
-                    frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen
-                <a href='https://codepen.io/matt_w/pen/MomorM/'>simple recursion</a> by matt_w (<a
-                        href='https://codepen.io/matt_w'>@matt_w</a>) on <a href='https://codepen.io'>CodePen</a>.
-            </iframe>
         </section>
 
         <section>
@@ -214,19 +153,33 @@
         </section>
 
         <section>
-            <h3>Iterated Function Systems</h3>
-            <p>Koch Snowflake</p>
-            <img src="https://s-media-cache-ak0.pinimg.com/originals/6b/f1/df/6bf1df731ac8322ba0a693bd3dd396b2.gif"
-                 style="border: none"/>
+            <iframe height='550' scrolling='no' title='simple recursion'
+                    src='//codepen.io/matt_w/embed/MomorM/?height=426&theme-id=0&default-tab=result&embed-version=2'
+                    frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen
+                <a href='https://codepen.io/matt_w/pen/MomorM/'>simple recursion</a> by matt_w (<a
+                        href='https://codepen.io/matt_w'>@matt_w</a>) on <a href='https://codepen.io'>CodePen</a>.
+            </iframe>
         </section>
 
         <section>
+            <h4>Affine day for a Transformation</h4>
+            <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/7a6ccaaa702062c1c63c488c076d4e1d08f94302" class="plain"/> </br>
+        </section>
+        <section data-background-image="image/giphy.gif">
+            <img src="image/affine.png"  style="max-width: 60%" class="fragment fade-up plain"/>
+        </section>
+        <section>
+            <h3>Random IFS Barnsley Fern</h3>
             <iframe height='550' scrolling='no' title='Fractal Fern'
                     src='//codepen.io/linrock/embed/tBefH/?height=265&theme-id=0&default-tab=js,result&embed-version=2'
                     frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen
                 <a href='https://codepen.io/linrock/pen/tBefH/'>Fractal Fern</a> by Linmiao Xu (<a
                         href='https://codepen.io/linrock'>@linrock</a>) on <a href='https://codepen.io'>CodePen</a>.
             </iframe>
+        </section>
+        <section data-background-image="image/chaos.gif" data-background="#000">
+            <h3><mark>See also: Chaos Game</mark></h3>
+
         </section>
 
         <section
@@ -257,8 +210,11 @@
                 data-background-image="http://orig06.deviantart.net/6b97/f/2014/277/a/9/autumn_night_by_anyzamarah-d81iybb.jpg">
         </section>
 
-        <section>
-            <h2>Fractal Terrain Generation</h2>
+        <section data-background-image="image/landscape.gif">
+            <h2><mark>Fractal Terrain Generation</mark></h2>
+        </section>
+        <section  data-background-image="image/mine.png">
+            <img src="image/landscape2.gif"  class="fade-left plain" style="max-width: 60%"/>
         </section>
         <section>
             <h3>Non-fractal iteration</h3>
@@ -277,6 +233,9 @@
                 <a href='https://codepen.io/matt_w/pen/GEmXRB/'>threejs - verts fractal</a> by matt_w (<a
                         href='https://codepen.io/matt_w'>@matt_w</a>) on <a href='https://codepen.io'>CodePen</a>.
             </iframe>
+        </section>
+        <section>
+            <img src="image/terrain-algorithm.gif" class="plain"/>
         </section>
         <section>
             <h3>3D Fractal recursion</h3>
