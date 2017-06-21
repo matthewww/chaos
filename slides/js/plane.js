@@ -1,7 +1,5 @@
 let camera, scene, renderer, geometry, material, line;
 
-window.onload = init;
-
 
 function init() {
     scene = new THREE.Scene();
@@ -30,8 +28,8 @@ function getGeometry() {
         geometry.vertices.push(new THREE.Vector3(-size, 0, i));
         geometry.vertices.push(new THREE.Vector3(size, 0, i));
 
-        geometry.vertices.push(new THREE.Vector3(i, 0, -size));
-        geometry.vertices.push(new THREE.Vector3(i, 0, size));
+        //geometry.vertices.push(new THREE.Vector3(i, 0, -size));
+        //geometry.vertices.push(new THREE.Vector3(i, 0, size));
 
     }
 
@@ -42,3 +40,5 @@ function render() {
     requestAnimationFrame(render);
     renderer.render(scene, camera);
 }
+
+window.onload = init;

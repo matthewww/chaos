@@ -10,7 +10,6 @@ Terrain.prototype.get = function (x, y) {
 };
 
 Terrain.prototype.set = function (x, y, val) {
-    console.log('-----------> ' + x);
     const position = x + this.size * y;
     this.map[position] = val;
 
@@ -19,9 +18,6 @@ Terrain.prototype.set = function (x, y, val) {
 
 Terrain.prototype.generate = function (roughness) {
     const self = this;
-
-    console.log('---------- position = x + size * y');
-    console.log('---------- this.map[position] = val');
 
     this.set(0, 0, self.max);
     this.set(this.max, 0, self.max);
@@ -44,7 +40,6 @@ Terrain.prototype.generate = function (roughness) {
             for (x = half; x < self.max; x += size) {
                 const offset = Math.random() * scale * 2 - scale,
                     average = getSquareAverage(x, y, half);
-                console.log(average);
                 self.set(x, y, average + offset);
             }
         }
@@ -88,59 +83,71 @@ Terrain.prototype.generate = function (roughness) {
     }
 };
 
-Terrain.prototype.draw = function (ctx, width, height) {
+Terrain.prototype.draw = function () {
     const self = this;
 
-    for (let y = 0; y < this.size; y++) {
-        for (let x = 0; x < this.size; x++) {
-            const val = this.get(x, y),
-                top = project(x, y, val),
-                bottom = project(x + 1, y, 0),
-                style = brightness(x, y, this.get(x + 1, y) - val);
+    const material = new THREE.LineBasicMaterial({color: 0x00ff00}),
+        geometry = getGeometry(width),
+        line = new THREE.PointCloud(geometry, material);
 
-            rect(top, bottom, style);
+    scene.add(line);
+    renderer.render(scene, camera);
+
+
+    function getGeometry(width) {
+        const geometry = new THREE.Geometry(),
+            scale = (width / self.size)/3;
+
+        for (let y = 0; y < self.size; y++) {
+            for (let x = 0; x < self.size; x++) {
+                const val = self.get(x, y);
+                geometry.vertices.push(new THREE.Vector3(x*1.5, 0, y*1.5));
+            }
         }
-    }
-    function rect(a, b, style) {
-        if (b.y < a.y) return;
 
-        ctx.fillStyle = style;
-        ctx.fillRect(a.x, a.y, b.x - a.x, b.y - a.y);
-    }
-
-    function brightness(x, y, slope) {
-        if (y === self.max || x === self.max) return '#000';
-
-        const b = ~~(slope * 50) + 128;
-        return ['rgba(', b, ',', b, ',', b, ',1)'].join('');
-    }
-
-    function iso(x, y) {
-        return {
-            x: 0.5 * (self.size + x - y),
-            y: 0.5 * (x + y)
-        };
-    }
-
-    function project(flatX, flatY, flatZ) {
-        const point = iso(flatX, flatY),
-            x0 = width * 0.5,
-            y0 = height * 0.2,
-            z = self.size * 0.5 - flatZ + point.y * 0.75,
-            x = (point.x - self.size * 0.5) * 6,
-            y = (self.size - point.y) * 0.005 + 1;
-        return {
-            x: x0 + x / y,
-            y: y0 + z / y
-        };
+        return geometry;
     }
 };
 
-const display = document.getElementById('contextTwo'),
-    ctx = display.getContext('2d'),
-    width = display.width = window.innerWidth,
-    height = display.height = window.innerHeight;
+function getCamera(width, height) {
+    const camera = new THREE.PerspectiveCamera(70, width / height, 1, 10000);
+    camera.position.set((width / 2)-150, 200, 500);
+    return camera;
+}
+function getLight() {
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(50, 250, 500);
+    return light;
+}
 
-const terrain = new Terrain(8);
-terrain.generate(0.7);
-terrain.draw(ctx, width, height);
+function getRenderer(width, height) {
+    const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('scene')});
+    renderer.setClearColor(0x3F3F3F);
+    renderer.setSize(width, height);
+    return renderer;
+}
+
+function clear(){
+    while(scene.children.length > 0){
+        scene.remove(scene.children[0]);
+    }
+}
+
+function init(detail = 7, roughness = 0.7) {
+    clear();
+
+    const terrain = new Terrain(detail); // 3, 5, 9, 17, 33, 65, 129, 257 ...
+    terrain.generate(roughness);
+    terrain.draw(renderer, scene, camera, width);
+}
+
+const width = window.innerWidth - 20,
+    height = window.innerHeight - 20,
+    scene = new THREE.Scene(),
+    renderer = getRenderer(width, height),
+    camera = getCamera(width, height);
+
+scene.add(getLight());
+scene.add(camera);
+
+init();
