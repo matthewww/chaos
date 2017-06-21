@@ -44,11 +44,6 @@ function getCamera(width, height) {
     return camera;
 }
 
-function getLight() {
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(50, 250, 500);
-    return light;
-}
 function getRenderer(width, height) {
     const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('scene')});
     renderer.setClearColor(0x3F3F3F);
@@ -107,7 +102,6 @@ const width = window.innerWidth - 20,
     renderer = getRenderer(width, height),
     camera = getCamera(width, height);
 
-scene.add(getLight());
 scene.add(camera);
 
 window.addEventListener('mousemove', function (e) {
