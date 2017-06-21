@@ -36,13 +36,13 @@
             <h4> - Benoit B Mandelbrot</h4>
         </section>
         <section data-background-image="http://users.math.yale.edu/mandelbrot/BBM-2000-hires.jpg">
-            <h2 class="fragment fade-up"><mark>What a fucking badass</mark></h2>
+            <h2 class="fragment fade-up"><mark>What a chuffing badass</mark></h2>
         </section>
-        <section>
-            <h3>What makes a fractal <b>fractal</b>?</h3>
-            <p>Self-similarity</p>
-            <p>Fine structure at a small scale</p>
-            <p>A recursive definition</p>
+        <section data-background-image="http://www.socwall.com/images/wallpapers/4050-3072x2304.jpg">
+            <h3><mark>What makes a fractal <b>fractal</b>?</mark></h3>
+            <p><mark>Self-similarity</mark></p>
+            <p><mark>Fine structure at a small scale</mark></p>
+            <p><mark>A recursive definition</mark></p>
             <p style="font-size: smaller" class="fragment fade-up">
                 <mark>“While classical geometry uses formulas to define a shape, fractal geometry uses iteration.”</mark></p>
 
@@ -85,7 +85,7 @@
             <h2>Complex Number Fractals</h2>
             <!--<div id="mandelbrot"></div>-->
             <img src="https://batchloaf.files.wordpress.com/2013/02/julia1.gif" style="border: none"/>
-            <p style="font-size: medium"><b>Julia Sets</b></p>
+            <p style="font-size: medium"><b>Julia Sets - z = z<sup style="font-size: smaller">2</sup> + c</b></p>
             <aside class="notes">
                 Gaston Julia.
                 Iteration of polynomials and rational functions.
@@ -98,11 +98,13 @@
 
             </aside>
         </section>
+        <section><iframe width="854" height="480" src="https://www.youtube.com/embed/R1gpm7WsNhg" frameborder="0" allowfullscreen></iframe></section>
+
         <section>
             <h2>Complex Number Fractals</h2>
             <!--<div id="mandelbrot"></div>-->
             <img src="http://a2wd.com/wp-content/uploads/2014/08/optimised.gif" style="border: none"/>
-            <p style="font-size: medium"><b>Mandelbrot Set:</b> The set of complex numbers <mark>c</mark> for which the function does not diverge when iterated from <mark>z=0</mark></p>
+            <p style="font-size: medium"><b>Mandelbrot Set:</b>The Mandelbrot set can be considered a map of all Julia sets because it uses a different <b>c</b> at each location.</p>
             <aside class="notes">
                 Take a complex number - that is, an imaginary number plus a real number.
                 'a "point" on the complex plane'
@@ -117,7 +119,6 @@
                 in the complex plane such that the corresponding
                 Julia set is connected and not computable.
 
-
                 "The" Mandelbrot set is the set obtained
                 from the quadratic recurrence equation
             </aside>
@@ -128,21 +129,59 @@
         </section>
         <section>
             <h3>Iterated Function Systems</h3>
-            <p>Description and flame BG</p>
+            <p> Union of copies, each transformed by a function</p>
+            <p> Affine transformations:</p>
+            <p>rotation, scale, translation</p>
         </section>
+        <section>
+            <p>Begin with the set [0,1].</p>
+            <p>Divide the existing segments into thirds.</p>
+            <p>Remove the middle third.</p>
+            <p>Go to step #2.</p>
+            <h3 class="fragment fade-up">Cantor Set</h3>
+        </section>
+        <section>
+            <iframe height='550' scrolling='no' title='simple recursion' src='//codepen.io/matt_w/embed/MomorM/?height=426&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='https://codepen.io/matt_w/pen/MomorM/'>simple recursion</a> by matt_w (<a href='https://codepen.io/matt_w'>@matt_w</a>) on <a href='https://codepen.io'>CodePen</a>.
+            </iframe>
+        </section>
+
         <section>
             <h3>Iterated Function Systems</h3>
             <p>Koch Snowflake</p>
             <img src="https://s-media-cache-ak0.pinimg.com/originals/6b/f1/df/6bf1df731ac8322ba0a693bd3dd396b2.gif" style="border: none"/>
         </section>
-        <section>
-            <h3>Iterated Function Systems</h3>
-            <p>Binary trees</p>
+
+        <section  data-background-image="https://upload.wikimedia.org/wikipedia/commons/8/8f/Spikes_Apophysis_Fractal_Flame.jpg">
+            <h3><mark>Iterated Function Systems</mark></h3>
+            <p><mark>Fractal Flames</mark></p>
+            <p><mark>Created by Scott Draves in 1992</mark></p>
+            <p><mark>Additional rules to IFS: iterate functions</mark></p>
         </section>
+
+        <section data-background-image="http://orig04.deviantart.net/eef2/f/2013/023/5/7/flame_fractal___pulsar_storm_by_zenutron-d5sfouq.jpg">
+        </section>
+
+        <section data-background-image="http://orig04.deviantart.net/35da/f/2008/351/0/d/spherical_fractal_flame_by_dnklat90.jpg">
+        </section>
+
+        <section data-background-image="http://orig06.deviantart.net/6b97/f/2014/277/a/9/autumn_night_by_anyzamarah-d81iybb.jpg">
+        </section>
+
         <section>
             <h2>Fractal Terrain Generation</h2>
         </section>
-
+        <section>
+            <h3>Non-fractal iteration</h3>
+            <iframe height='500' scrolling='no' title='threejs - verts play' src='//codepen.io/matt_w/embed/zzwOMX/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen
+                <a href='https://codepen.io/matt_w/pen/zzwOMX/'>threejs - verts play</a> by matt_w (<a href='https://codepen.io/matt_w'>@matt_w</a>) on <a href='https://codepen.io'>CodePen</a>.
+            </iframe>
+        </section>
+        <section>
+            <h3>Fractal recursion</h3>
+            <iframe height='500' scrolling='no' title='threejs - verts fractal' src='//codepen.io/matt_w/embed/GEmXRB/?height=265&theme-id=0&default-tab=result&embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen
+                <a href='https://codepen.io/matt_w/pen/GEmXRB/'>threejs - verts fractal</a> by matt_w (<a href='https://codepen.io/matt_w'>@matt_w</a>) on <a href='https://codepen.io'>CodePen</a>.
+            </iframe>
+        </section>
         <section>
             <p>fin</p>
         </section>
