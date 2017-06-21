@@ -3,7 +3,7 @@
  *
  * By Hakim El Hattab, http://hakim.se
  */
-@import url("https://fonts.googleapis.com/css?family=Open+Sans|Quicksand");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Quicksand|Spectral");
 section.has-dark-background, section.has-dark-background h1, section.has-dark-background h2, section.has-dark-background h3, section.has-dark-background h4, section.has-dark-background h5, section.has-dark-background h6 {
   color: #fff; }
 
@@ -11,7 +11,7 @@ section.has-dark-background, section.has-dark-background h1, section.has-dark-ba
  * GLOBAL STYLES
  *********************************************/
 mark {
-  background-color: #DDDDDD;
+  background-color: rgba(200, 200, 200, 0.6);
 }
 
 body {
@@ -143,9 +143,14 @@ body {
   width: 70%;
   margin: 20px auto;
   padding: 5px;
-  font-style: italic;
-  background: rgba(255, 255, 255, 0.05);
+  font-family: 'Spectral';
+  background: rgba(200, 200, 200, 0.1);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
+
+
+.reveal blockquote.bghighlight {
+  background: rgba(200, 200, 200, 0.6);
+}
 
 .reveal blockquote p:first-child,
 .reveal blockquote p:last-child {
@@ -264,42 +269,42 @@ body {
  *********************************************/
 .reveal .controls .navigate-left,
 .reveal .controls .navigate-left.enabled {
-  border-right-color: #00dd00; }
+  border-right-color: rgb(178, 220, 62); }
 
 .reveal .controls .navigate-right,
 .reveal .controls .navigate-right.enabled {
-  border-left-color: #00dd00; }
+  border-left-color: rgb(178, 220, 62); }
 
 .reveal .controls .navigate-up,
 .reveal .controls .navigate-up.enabled {
-  border-bottom-color: #00dd00; }
+  border-bottom-color: rgb(178, 220, 62); }
 
 .reveal .controls .navigate-down,
 .reveal .controls .navigate-down.enabled {
-  border-top-color: #00dd00; }
+  border-top-color: rgb(178, 220, 62); }
 
 .reveal .controls .navigate-left.enabled:hover {
-  border-right-color: #99dd99; }
+  border-right-color: rgba(178, 220, 62, 0.5); }
 
 .reveal .controls .navigate-right.enabled:hover {
-  border-left-color: #99dd99; }
+  border-left-color: rgba(178, 220, 62, 0.5); }
 
 .reveal .controls .navigate-up.enabled:hover {
-  border-bottom-color: #99dd99; }
+  border-bottom-color: rgba(178, 220, 62, 0.5); }
 
 .reveal .controls .navigate-down.enabled:hover {
-  border-top-color: #99dd99; }
+  border-top-color: rgba(178, 220, 62, 0.5); }
 
 /*********************************************
  * PROGRESS BAR
  *********************************************/
 .reveal .progress {
   background: rgba(0, 0, 0, 0.2);
-  height: 5px
+  height: 10px
 }
 
 .reveal .progress span {
-  background: #00dd00;
+  background: rgba(178, 220, 62, 0.8);
   -webkit-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   -moz-transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985);
   transition: width 800ms cubic-bezier(0.26, 0.86, 0.44, 0.985); }
