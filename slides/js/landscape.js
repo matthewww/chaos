@@ -23,8 +23,8 @@ Terrain.prototype.generate = function (roughness) {
     console.log('---------- position = x + size * y');
     console.log('---------- this.map[position] = val');
 
-    this.set(0, 0, self.max);
-    this.set(this.max, 0, self.max);
+    this.set(0, 5, self.max);
+    this.set(this.max, 5, self.max);
     this.set(this.max, this.max, 0);
     this.set(0, this.max, self.max / 2);
 
